@@ -1,0 +1,155 @@
+{
+  "app": {
+    "slug": "hexad",
+    "display": "hexad",
+    "summary": "A macOS window switcher",
+    "accent": "#E9AD48",
+    "tagline": "Early build · v0.6.2",
+    "headline": [
+      "One switcher.",
+      "Chosen, not endured."
+    ],
+    "lede": "A window switcher for macOS in three shapes — a held-modifier row, a searchable list, or every window at once. You pick one, and the other two stay out of the way.",
+    "meta": "macOS 14+ · early build · not yet verified end to end",
+    "nav": [
+      {
+        "label": "Features",
+        "href": "#features"
+      },
+      {
+        "label": "Install",
+        "href": "#install"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/smrazar/hexad"
+      }
+    ],
+    "cta": [
+      {
+        "label": "Build from source",
+        "href": "#install"
+      },
+      {
+        "label": "View source",
+        "href": "https://github.com/smrazar/hexad"
+      }
+    ],
+    "marquee": [
+      "SQUARE",
+      "LIST",
+      "GRID",
+      "HELD MODIFIER",
+      "TRACKPAD SWIPE",
+      "TWO-FINGER SCROLL",
+      "MENU BAR",
+      "PER-DISPLAY"
+    ],
+    "features": [
+      {
+        "step": "01 / One of three",
+        "title": "Square, list, or grid.",
+        "body": "hexad is one of three things at a time, never all three. Square is a row of tiles you cycle while a modifier is held. List takes focus so you can type a few letters. Grid shows every window at once, grouped by display.",
+        "shot": null
+      },
+      {
+        "step": "02 / Ways in",
+        "title": "Keys, trackpad, or the menu bar.",
+        "body": "Up to three key bindings, each recorded from a real keystroke and stored as a virtual key code, so a chord recorded on one layout still works on another. Or a three-finger swipe: one gesture opens, scrubs and commits.",
+        "shot": null
+      },
+      {
+        "step": "03 / Two rules, enforced",
+        "title": "It won't let you lock yourself out.",
+        "body": "A bare letter cannot be bound — it would swallow that letter in every app, forever. And the last binding cannot be removed, because clearing it locks you out of an app whose only interface is the thing you just unbound.",
+        "shot": null
+      }
+    ],
+    "capabilities": {
+      "step": "What exists",
+      "title": "Built, and being verified.",
+      "items": [
+        {
+          "name": "Square mode",
+          "sub": "held gesture, MRU"
+        },
+        {
+          "name": "List mode",
+          "sub": "type to filter"
+        },
+        {
+          "name": "Grid mode",
+          "sub": "grouped by display"
+        },
+        {
+          "name": "Key bindings",
+          "sub": "up to three"
+        },
+        {
+          "name": "Trackpad swipe",
+          "sub": "three fingers"
+        },
+        {
+          "name": "Two-finger scroll",
+          "sub": "moves selection"
+        },
+        {
+          "name": "Menu bar item",
+          "sub": "names the mode"
+        },
+        {
+          "name": "Shift to reverse",
+          "sub": "same chord"
+        }
+      ]
+    },
+    "install": {
+      "step": "Install",
+      "title": "Build it yourself.",
+      "commands": [
+        "git clone https://github.com/smrazar/hexad.git",
+        "cd hexad",
+        "./Scripts/install.sh"
+      ],
+      "note": "This is an early build. The features above exist in the binary; whether each one has been watched working is tracked honestly in docs/STATUS.md. There is no release yet, and no binary download."
+    },
+    "colophon": "© 2026 · written in Swift, by one guy"
+  },
+  "shelf": [
+    {
+      "slug": "loupe",
+      "name": "loupe",
+      "blurb": "quick look for pro files",
+      "version": "v0.1",
+      "url": "https://smrazar.github.io/loupe/"
+    },
+    {
+      "slug": "markpad",
+      "name": "markpad",
+      "blurb": "markdown editor + quick look",
+      "version": "v1.8",
+      "url": "https://smrazar.github.io/markpad/"
+    },
+    {
+      "slug": "stow",
+      "name": "stow",
+      "blurb": "menu bar in three zones",
+      "version": "v3.8.0",
+      "url": "https://smrazar.github.io/stow/"
+    },
+    {
+      "slug": "senti",
+      "name": "senti",
+      "blurb": "mirror android over usb",
+      "version": "v1.5",
+      "url": "https://smrazar.github.io/senti/"
+    },
+    {
+      "slug": "hexad",
+      "name": "hexad",
+      "blurb": "window switcher",
+      "version": "v0.6.2",
+      "url": "https://smrazar.github.io/hexad/"
+    }
+  ]
+}
