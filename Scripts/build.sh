@@ -16,7 +16,20 @@ VERSION="0.6.2"
 CONFIG="${1:-release}"
 
 echo "==> swift build -c $CONFIG"
-swift build -c "$CONFIG"
+# A release build embeds the absolute path of every source file and object file — in the DWARF
+# debug info, and in the linker's debug map (the N_OSO entries). On this machine that means
+# "/Users/m/..." shipped inside the binary of every published release, ~100 occurrences each.
+#
+# `strings` does not show them: Apple's strings only dumps __TEXT on a Mach-O and never looks at
+# __DWARF, so a scan of the binary comes back clean while the paths are sitting right there.
+# Checked with `python3 ~/Developer/scan-personal-data.py <App>.app` instead.
+#
+#   -file-prefix-map  rewrites source paths to ./Sources/...
+#   -oso_prefix       strips the build directory from the linker's debug map
+#
+# Both are needed; either alone leaves half the paths behind.
+swift build -c "$CONFIG" -Xswiftc -file-prefix-map -Xswiftc "$PWD=." \
+    -Xcc -ffile-prefix-map="$PWD=." -Xlinker -oso_prefix -Xlinker "$PWD/"
 
 BIN=".build/$CONFIG/$APP_NAME"
 APP="build/$APP_NAME.app"
