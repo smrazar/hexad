@@ -114,7 +114,8 @@ h1{{margin:0;font-size:68px;line-height:1.02;letter-spacing:-.04em;color:{TEXT_B
 .copy .step{{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:{accent}}}
 .copy h2{{margin:0;font-size:36px;line-height:1.12;letter-spacing:-.03em;color:{LIGHT_HEAD}}}
 .copy p{{margin:0;font-size:16px;line-height:1.65;color:{LIGHT_BODY};text-wrap:pretty}}
-.art img{{width:100%;height:auto;display:block;border-radius:12px;border:1px solid {HAIRLINE}}}
+.art img,.art video{{width:100%;height:auto;display:block;border-radius:12px;
+  border:1px solid {HAIRLINE};background:{INK}}}
 .art.placeholder{{aspect-ratio:16/10;border-radius:12px;border:1px solid {HAIRLINE};
   background:repeating-linear-gradient(135deg,#eef0f2,#eef0f2 8px,#f6f7f8 8px,#f6f7f8 16px);
   display:flex;align-items:center;justify-content:center;font-size:12px;color:#99a1a9}}
@@ -220,7 +221,20 @@ def features(app):
     for i, feature in enumerate(app["features"]):
         shot = feature.get("shot")
         if shot and os.path.exists(os.path.join(OUT, shot)):
-            art = f'<div class="art"><img src="{esc(shot)}" alt="" loading="lazy"></div>'
+            if shot.lower().endswith((".mp4", ".webm", ".mov")):
+                # A poster matters: without one the row is a black rectangle until metadata loads,
+                # and `preload="metadata"` is not a promise about the first frame. Any sibling
+                # image with the same stem is used. No autoplay — motion on this page is
+                # decorative and gated behind prefers-reduced-motion, and a video is not
+                # decorative.
+                stem = os.path.splitext(shot)[0]
+                poster = next((f"{stem}{ext}" for ext in (".jpg", ".png")
+                               if os.path.exists(os.path.join(OUT, f"{stem}{ext}"))), None)
+                attrs = f' poster="{esc(poster)}"' if poster else ""
+                art = (f'<div class="art"><video src="{esc(shot)}"{attrs} controls muted loop '
+                       f'playsinline preload="metadata"></video></div>')
+            else:
+                art = f'<div class="art"><img src="{esc(shot)}" alt="" loading="lazy"></div>'
         else:
             art = '<div class="art placeholder mono">screenshot</div>'
         copy = (f'<div class="copy"><div class="step mono">{esc(feature["step"])}</div>'

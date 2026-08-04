@@ -117,6 +117,13 @@
   },
   "shelf": [
     {
+      "slug": "trinket",
+      "name": "trinket",
+      "blurb": "shrink, convert, scrub",
+      "version": "v1.1",
+      "url": "https://smrazar.github.io/trinket/"
+    },
+    {
       "slug": "loupe",
       "name": "loupe",
       "blurb": "quick look for pro files",
